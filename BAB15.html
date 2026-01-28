@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>BAB15</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>BAB1</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Latihan Kosakata</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  .card {
+    background: white;
+    padding: 30px;
+    width: 400px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  input {
+    width: 90%;
+    padding: 8px;
+    margin-top: 15px;
+  }
+  button {
+    margin-top: 20px;
+    padding: 8px 15px;
+    cursor: pointer;
+  }
+  .result {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .wrong { color: red; }
+  .correct { color: green; }
+  ol { text-align:left; max-height:400px; overflow:auto; }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h2 id="question"></h2>
+  <input type="text" id="answerInput" placeholder="Tulis jawaban di sini">
+  <br>
+  <button id="nextBtn">Selanjutnya</button>
+</div>
+
+<script>
+let questions = [
+{ soal: "옷차림", jawaban: "baju / pakaian" },
+{ soal: "검은색", jawaban: "hitam" },
+{ soal: "까만색", jawaban: "hitam" },
+{ soal: "입다", jawaban: "memakai (di badan)" },
+{ soal: "하얀색", jawaban: "putih" },
+{ soal: "신다", jawaban: "memakai (di kaki)" },
+{ soal: "갈색", jawaban: "coklat" },
+{ soal: "쓰다", jawaban: "memakai (di kepala), menulis, pahit" },
+{ soal: "빨간색", jawaban: "merah" },
+{ soal: "티셔츠", jawaban: "kaos" },
+{ soal: "주황색", jawaban: "jingga / orange" },
+{ soal: "잠바", jawaban: "jaket" },
+{ soal: "점퍼", jawaban: "jaket" },
+{ soal: "노란색", jawaban: "kuning" },
+{ soal: "청바지", jawaban: "celana jeans" },
+{ soal: "초록색", jawaban: "hijau" },
+{ soal: "치마", jawaban: "rok" },
+{ soal: "어둡다", jawaban: "gelap" },
+{ soal: "반바지", jawaban: "celana pendek" },
+{ soal: "결혼식", jawaban: "acara pernikahan" },
+{ soal: "원피스", jawaban: "gaun / dress" },
+{ soal: "색깔", jawaban: "warna" },
+{ soal: "운동화", jawaban: "sepatu olahraga" },
+{ soal: "색상", jawaban: "warna" },
+{ soal: "슬리퍼", jawaban: "sendal" },
+{ soal: "화려하다", jawaban: "anggun, mewah" },
+{ soal: "구두", jawaban: "sepatu kulit" },
+{ soal: "디자인", jawaban: "desain" },
+{ soal: "양말", jawaban: "kaos kaki" },
+{ soal: "무용하다", jawaban: "tidak berguna" },
+{ soal: "장화", jawaban: "sepatu boot" },
+{ soal: "주제로", jawaban: "dengan topik" },
+{ soal: "모자", jawaban: "topi" },
+{ soal: "구성되다", jawaban: "terdiri dari" },
+{ soal: "선글라스", jawaban: "kacamata hitam" },
+{ soal: "자연스러운", jawaban: "alami" },
+{ soal: "안경", jawaban: "kacamata" },
+{ soal: "실로엣으로", jawaban: "dengan siluet" },
+{ soal: "하늘색", jawaban: "biru langit" },
+{ soal: "체형", jawaban: "tipe tubuh" },
+{ soal: "파란색", jawaban: "biru" },
+{ soal: "장점", jawaban: "keunggulan / kelebihan" },
+{ soal: "본홍색", jawaban: "pink" },
+{ soal: "풍성하다", jawaban: "kaya, melimpah" },
+{ soal: "회색", jawaban: "abu-abu" },
+{ soal: "디테일로", jawaban: "dengan detail" },
+{ soal: "밝다", jawaban: "terang" },
+{ soal: "단순하다", jawaban: "sederhana" },
+{ soal: "액세서리", jawaban: "aksesoris" },
+{ soal: "실용적이다", jawaban: "praktis" },
+{ soal: "쇼핑몰", jawaban: "mall perbelanjaan" },
+{ soal: "변화", jawaban: "mengubah" },
+{ soal: "점잖은", jawaban: "bagus, sopan" },
+{ soal: "대중화", jawaban: "popularisasi" },
+{ soal: "신부", jawaban: "pengantin wanita" },
+{ soal: "기여하다", jawaban: "berperan penting" },
+{ soal: "단아하다", jawaban: "anggun" },
+{ soal: "계통", jawaban: "sistem" },
+{ soal: "페스티벌", jawaban: "festival" },
+{ soal: "세계적으로", jawaban: "secara global" },
+{ soal: "무늬", jawaban: "pola" },
+{ soal: "알리다", jawaban: "memperkenalkan" },
+{ soal: "소재", jawaban: "material" },
+{ soal: "연령", jawaban: "usia" },
+{ soal: "조화롭다", jawaban: "serasi" },
+{ soal: "역할", jawaban: "peran" },
+{ soal: "주름", jawaban: "keriput" },
+{ soal: "신랑", jawaban: "pengantin laki-laki" },
+{ soal: "평상복", jawaban: "pakaian kasual" },
+{ soal: "푸른색", jawaban: "warna biru" },
+{ soal: "다소", jawaban: "agak" },
+{ soal: "패션쇼", jawaban: "fashion show" },
+{ soal: "개량하다", jawaban: "memperbaiki" },
+{ soal: "널리", jawaban: "secara luas" },
+{ soal: "노력", jawaban: "usaha" },
+];
+
+// Acak soal
+questions = questions.sort(() => Math.random() - 0.5);
+
+let index = 0;
+let score = 0;
+let userAnswers = [];
+
+const questionEl = document.getElementById("question");
+const answerInput = document.getElementById("answerInput");
+const nextBtn = document.getElementById("nextBtn");
+const card = document.querySelector(".card");
+
+function showQuestion() {
+  questionEl.textContent = "Soal " + (index + 1) + ": " + questions[index].soal;
+  answerInput.value = "";
+  answerInput.focus();
+}
+
+nextBtn.addEventListener("click", () => {
+  const userAnswer = answerInput.value.trim().toLowerCase();
+  userAnswers[index] = userAnswer; // simpan jawaban sesuai index
+
+  if (userAnswer === questions[index].jawaban) {
+    score++;
+  }
+
+  index++;
+  if (index < questions.length) {
+    showQuestion();
+  } else {
+    showResult();
+  }
+});
+
+function showResult() {
+  let answerList = "";
+  questions.forEach((q, i) => {
+    if (userAnswers[i] === q.jawaban) {
+      answerList += `<li>${q.soal} = <span class="correct">${q.jawaban}</span></li>`;
+    } else {
+      answerList += `<li>${q.soal} = <span class="correct">${q.jawaban}</span><br>
+                     Jawaban kamu: <span class="wrong">${userAnswers[i] || "(kosong)"}</span></li>`;
+    }
+  });
+
+  card.innerHTML = `
+    <h2>Hasil</h2>
+    <p class="result">Nilai: ${score} / ${questions.length}</p>
+    <hr>
+    <p>Kunci Jawaban:</p>
+    <ol>${answerList}</ol>
+  `;
+}
+
+showQuestion();
+</script>
+
+</body>
+</html>
+    
+  </body>
+  
+</html>
